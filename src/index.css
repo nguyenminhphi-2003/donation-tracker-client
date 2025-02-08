@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+@theme {
+    --color-primary-pink: #ffa8e4;
+}
+
 body {
     font-family: 'Poppins', serif;
     font-weight: 400;
