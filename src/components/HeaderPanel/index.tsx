@@ -17,7 +17,7 @@ function HeaderPanel() {
         } else {
             setIsLoggedIn(false);
         }
-    });
+    },[]);
 
     const handleLogout = async () => {
         await authApi.logout();
