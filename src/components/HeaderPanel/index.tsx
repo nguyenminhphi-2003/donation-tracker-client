@@ -1,9 +1,30 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { authApi } from '../../api/auth.api';
 
 function HeaderPanel() {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const cookie = document.cookie;
+        
+        if (cookie && !cookie.includes('loggedout')) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+    });
+
+    const handleLogout = async () => {
+        await authApi.logout();
+        setIsLoggedIn(false);
+        document.cookie = 'jwt=loggedout';
+        navigate('/');
+    };
 
     return (
         <div
@@ -12,19 +33,34 @@ function HeaderPanel() {
         >
             <FontAwesomeIcon icon={faBars} />
 
-            <div
-                className={`absolute flex flex-col top-12 right-0 w-48 overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-lg ${isOpen ? 'max-h-56 border border-gray-300' : 'max-h-0'}`}
+            <ul
+                className={`absolute flex flex-col top-12 right-0 w-48 overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-lg ${isOpen ? 'max-h-64 border border-gray-300' : 'max-h-0'}`}
             >
-                <a href='' className='px-4 py-3 transition-transform duration-150 hover:translate-x-1'>
-                    All Activities
-                </a>
-                <a href='' className='px-4 py-3 transition-transform duration-150 hover:translate-x-1'>
-                    My Donations
-                </a>
-                <a href='' className='px-4 py-3 transition-transform duration-150 hover:translate-x-1'>
-                    Logout
-                </a>
-            </div>
+                <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
+                    <Link to={'/login'}>All Activities</Link>
+                </li>
+                <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
+                    <Link to={'/login'}>My Activities</Link>
+                </li>
+                <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
+                    <Link to={'/login'}>My Donations</Link>
+                </li>
+
+                {!isLoggedIn ? (
+                    <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
+                        <Link to={'/login'}>Login</Link>
+                    </li>
+                ) : (
+                    <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
+                        <button
+                            className='cursor-pointer'
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </button>
+                    </li>
+                )}
+            </ul>
         </div>
     );
 }
