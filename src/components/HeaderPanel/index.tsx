@@ -1,23 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { authApi } from '../../api/auth.api';
 
 function HeaderPanel() {
     const navigate = useNavigate();
+    const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const cookie = document.cookie;
-        
+        console.log(cookie);
+
         if (cookie && !cookie.includes('loggedout')) {
             setIsLoggedIn(true);
         } else {
             setIsLoggedIn(false);
         }
-    },[]);
+    }, [location]);
 
     const handleLogout = async () => {
         await authApi.logout();
