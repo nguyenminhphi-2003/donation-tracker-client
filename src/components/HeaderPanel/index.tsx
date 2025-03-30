@@ -39,13 +39,13 @@ function HeaderPanel() {
                 className={`absolute flex flex-col top-12 right-0 w-48 overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-lg ${isOpen ? 'max-h-64 border border-gray-300' : 'max-h-0'}`}
             >
                 <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
-                    <Link to={'/login'}>All Activities</Link>
+                    <Link to={'/activities'}>All Activities</Link>
                 </li>
                 <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
-                    <Link to={'/login'}>My Activities</Link>
+                    <Link to={'/my-activities'}>My Activities</Link>
                 </li>
                 <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
-                    <Link to={'/login'}>My Donations</Link>
+                    <Link to={'/my-donations'}>My Donations</Link>
                 </li>
 
                 {!isLoggedIn ? (

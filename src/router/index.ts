@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '../App.tsx';
 import Homepage from '../pages/Homepage';
 import Login from '../pages/Login';
+import Activities from '../pages/Activities';
 
 export default createBrowserRouter([
     {
@@ -16,6 +17,10 @@ export default createBrowserRouter([
             {
                 path: '/login',
                 element: createElement(Login),
+            },
+            {
+                path: '/activities',
+                element: createElement(Activities),
             }
         ]
     },
