@@ -12,8 +12,6 @@ function HeaderPanel() {
 
     useEffect(() => {
         const cookie = document.cookie;
-        console.log(cookie);
-
         if (cookie && !cookie.includes('loggedout')) {
             setIsLoggedIn(true);
         } else {
