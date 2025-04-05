@@ -9,6 +9,9 @@ import MyActivities from '../pages/Activities/MyActivities';
 import UpdateActivity from '../pages/Activities/UpdateActivity';
 import CreateActivity from '../pages/Activities/CreateActivity';
 import MyDonations from '../pages/Donations/MyDonations';
+import Admin from '../pages/Admin';
+import UpdateUser from '../pages/Admin/AdminUsers/update.tsx';
+import UpdateAdminActivity from '../pages/Admin/AdminActivities/update.tsx';
 
 export default createBrowserRouter([
     {
@@ -47,6 +50,18 @@ export default createBrowserRouter([
                 path: '/my-donations',
                 element: createElement(MyDonations),
             },
+            {
+                path: '/admin',
+                element: createElement(Admin),
+            },
+            {
+                path: '/admin/users/:id/edit',
+                element: createElement(UpdateUser),
+            },
+            {
+                path: '/admin/activities/:id/edit',
+                element: createElement(UpdateAdminActivity),
+            }
         ],
     },
 ]);
