@@ -8,6 +8,7 @@ import Activity from '../pages/Activities/Activity';
 import MyActivities from '../pages/Activities/MyActivities';
 import UpdateActivity from '../pages/Activities/UpdateActivity';
 import CreateActivity from '../pages/Activities/CreateActivity';
+import MyDonations from '../pages/Donations/MyDonations';
 
 export default createBrowserRouter([
     {
@@ -41,6 +42,10 @@ export default createBrowserRouter([
             {
                 path: '/create-activity',
                 element: createElement(CreateActivity),
+            },
+            {
+                path: '/my-donations',
+                element: createElement(MyDonations),
             },
         ],
     },

@@ -4,6 +4,7 @@ import {
     activityApi,
     Activity as ActivityType,
 } from '../../../api/activity.api';
+import { donationApi } from '../../../api/donation.api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCalendarAlt,
@@ -68,7 +69,7 @@ export default function Activity() {
 
     const handleDonationSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+    
         if (
             !donationAmount ||
             isNaN(Number(donationAmount)) ||
@@ -77,26 +78,24 @@ export default function Activity() {
             setDonationError('Please enter a valid donation amount');
             return;
         }
-
+    
         try {
             setDonationLoading(true);
             setDonationError(null);
-
+    
             const donationValue = Number(donationAmount);
+    
+            await donationApi.create(id!, donationValue);
+    
             const newTotalDonations = activity!.totalDonations + donationValue;
-
-            await activityApi.update(id!, {
-                totalDonations: newTotalDonations,
-            });
-
             setActivity({
                 ...activity!,
                 totalDonations: newTotalDonations,
             });
-
+    
             setDonationAmount('');
             setShowDonationModal(false);
-
+    
             alert('Thank you for your donation!');
         } catch (err) {
             console.error('Error submitting donation:', err);
