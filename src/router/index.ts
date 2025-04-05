@@ -4,6 +4,10 @@ import App from '../App.tsx';
 import Homepage from '../pages/Homepage';
 import Login from '../pages/Login';
 import Activities from '../pages/Activities';
+import Activity from '../pages/Activities/Activity';
+import MyActivities from '../pages/Activities/MyActivities';
+import UpdateActivity from '../pages/Activities/UpdateActivity';
+import CreateActivity from '../pages/Activities/CreateActivity';
 
 export default createBrowserRouter([
     {
@@ -21,7 +25,23 @@ export default createBrowserRouter([
             {
                 path: '/activities',
                 element: createElement(Activities),
-            }
-        ]
+            },
+            {
+                path: '/activity/:id',
+                element: createElement(Activity),
+            },
+            {
+                path: '/my-activities',
+                element: createElement(MyActivities),
+            },
+            {
+                path: '/edit-activity/:id',
+                element: createElement(UpdateActivity),
+            },
+            {
+                path: '/create-activity',
+                element: createElement(CreateActivity),
+            },
+        ],
     },
 ]);

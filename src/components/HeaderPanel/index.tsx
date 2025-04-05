@@ -39,12 +39,18 @@ function HeaderPanel() {
                 <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
                     <Link to={'/activities'}>All Activities</Link>
                 </li>
-                <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
-                    <Link to={'/my-activities'}>My Activities</Link>
-                </li>
-                <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
-                    <Link to={'/my-donations'}>My Donations</Link>
-                </li>
+                
+                {/* Only show these items for logged-in users */}
+                {isLoggedIn && (
+                    <>
+                        <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
+                            <Link to={'/my-activities'}>My Activities</Link>
+                        </li>
+                        <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>
+                            <Link to={'/my-donations'}>My Donations</Link>
+                        </li>
+                    </>
+                )}
 
                 {!isLoggedIn ? (
                     <li className='px-4 py-3 transition-transform duration-150 hover:translate-x-1 hover:font-semibold'>

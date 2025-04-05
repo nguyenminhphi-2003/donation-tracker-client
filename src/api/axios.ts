@@ -14,6 +14,30 @@ api.interceptors.request.use(
     }
 );
 
+api.interceptors.request.use(
+    (config) => {
+        const cookies = document.cookie.split(';');
+        let token = '';
+        
+        for (const cookie of cookies) {
+            const [name, value] = cookie.trim().split('=');
+            if (name === 'jwt') {
+                token = value;
+                break;
+            }
+        }
+        
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
 export default api;
 
 // https://donation-tracker-api.onrender.com/api/activities

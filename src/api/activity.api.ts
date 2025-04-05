@@ -23,6 +23,11 @@ export const activityApi = {
         const response = await api.get('/activities');
         return response.data;
     },
+
+    getMyActivities: async () => {
+        const response = await api.get('/activities/my-activities');
+        return response.data;
+    },
     
     getById: async (id: string) => {
         const response = await api.get(`/activities/${id}`);
@@ -35,7 +40,7 @@ export const activityApi = {
     },
     
     update: async (id: string, activity: any) => {
-        const response = await api.put(`/activities/${id}`, activity);
+        const response = await api.patch(`/activities/${id}`, activity);
         return response.data;
     },
     
