@@ -9,4 +9,7 @@ export const authApi = {
         ),
 
     logout: () => api.get('/users/logout'),
+
+    checkAdmin: () =>
+        api.post('/users/check-admin', { withCredentials: true }),
 };

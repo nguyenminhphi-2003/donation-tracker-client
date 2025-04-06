@@ -4,11 +4,11 @@ import { Donation, donationApi } from '../../../api/donation.api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faReceipt,
-    faCalendarAlt,
     faMoneyBillWave,
     faTag,
     faArrowLeft,
-    faUser
+    faUser,
+    faQuestionCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function MyDonations() {
@@ -104,60 +104,52 @@ export default function MyDonations() {
                         </div>
                         
                         <ul className="divide-y divide-gray-200">
-                            {donations.map((donation) => {
-                                // Format date for display
-                                const donationDate = new Date(donation._id.substring(0, 8));
-                                const formattedDate = donationDate.toLocaleDateString('en-US', {
-                                    year: 'numeric',
-                                    month: 'short',
-                                    day: 'numeric'
-                                });
-                                
-                                return (
-                                    <li key={donation._id} className="p-6 hover:bg-gray-50 transition-colors duration-150">
-                                        <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                                            <div className="mb-4 md:mb-0">
-                                                <h3 className="text-lg font-medium text-gray-800 mb-1">
+                            {donations.map((donation) => (
+                                <li key={donation._id} className="p-6 hover:bg-gray-50 transition-colors duration-150">
+                                    <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+                                        <div className="mb-4 md:mb-0">
+                                            <h3 className="text-lg font-medium text-gray-800 mb-1">
+                                                {donation.activity ? (
                                                     <Link 
                                                         to={`/activity/${donation.activity._id}`}
                                                         className="hover:text-primary-pink transition-colors"
                                                     >
                                                         {donation.activity.name}
                                                     </Link>
-                                                </h3>
-                                                
-                                                <div className="flex flex-wrap gap-3 text-sm text-gray-600">
-                                                    <div className="flex items-center">
-                                                        <FontAwesomeIcon icon={faTag} className="mr-2 text-primary-pink" />
-                                                        <span>ID: {donation._id.substring(0, 8)}...</span>
-                                                    </div>
-                                                    
-                                                    <div className="flex items-center">
-                                                        <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-primary-pink" />
-                                                        <span>Date: {formattedDate}</span>
-                                                    </div>
-                                                    
-                                                    <div className="flex items-center">
-                                                        <FontAwesomeIcon icon={faUser} className="mr-2 text-primary-pink" />
-                                                        <span>Donor: {donation.user.firstName} {donation.user.lastName}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                ) : (
+                                                    <span className="text-gray-500 flex items-center">
+                                                        <FontAwesomeIcon icon={faQuestionCircle} className="mr-2" />
+                                                        Activity no longer available
+                                                    </span>
+                                                )}
+                                            </h3>
                                             
-                                            <div className="bg-gray-100 px-4 py-2 rounded-md">
+                                            <div className="flex flex-wrap gap-3 text-sm text-gray-600">
                                                 <div className="flex items-center">
-                                                    <FontAwesomeIcon icon={faMoneyBillWave} className="mr-2 text-green-600" />
-                                                    <span className="font-semibold text-green-600">${donation.amount.toFixed(2)}</span>
+                                                    <FontAwesomeIcon icon={faTag} className="mr-2 text-primary-pink" />
+                                                    <span>ID: {donation._id.substring(0, 8)}...</span>
                                                 </div>
-                                                <div className="text-xs text-gray-500 mt-1">
-                                                    <FontAwesomeIcon icon={faReceipt} className="mr-1" />
-                                                    Receipt ID: {donation._id}
+                                                
+                                                <div className="flex items-center">
+                                                    <FontAwesomeIcon icon={faUser} className="mr-2 text-primary-pink" />
+                                                    <span>Donor: {donation.user.firstName} {donation.user.lastName}</span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                );
-                            })}
+                                        
+                                        <div className="bg-gray-100 px-4 py-2 rounded-md">
+                                            <div className="flex items-center">
+                                                <FontAwesomeIcon icon={faMoneyBillWave} className="mr-2 text-green-600" />
+                                                <span className="font-semibold text-green-600">${donation.amount.toFixed(2)}</span>
+                                            </div>
+                                            <div className="text-xs text-gray-500 mt-1">
+                                                <FontAwesomeIcon icon={faReceipt} className="mr-1" />
+                                                Receipt ID: {donation._id}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
                         </ul>
                         
                         <div className="bg-gray-50 px-6 py-4 text-right">
