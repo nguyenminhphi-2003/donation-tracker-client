@@ -1,5 +1,6 @@
 import Footer from './components/Footer';
 import Header from './components/Header';
+import GeminiChat from './components/GeminiChat';
 import { Outlet } from 'react-router-dom';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
                 <Outlet />
             </div>
             <Footer />
+            <GeminiChat />
         </div>
     );
 }
