@@ -103,7 +103,7 @@ export default function GeminiChat() {
 
             {/* Expanded Chat Window */}
             <div
-                className={`absolute bottom-0 right-0 mb-2 pt-2 bg-white rounded-lg shadow-xl w-96 md:w-96 overflow-hidden transition-all duration-300 transform ${
+                className={`absolute bottom-0 right-0 mb-2 bg-white rounded-lg shadow-xl w-96 md:w-96 overflow-hidden transition-all duration-300 transform ${
                     isOpen
                         ? 'scale-100 opacity-100 translate-y-0'
                         : 'scale-90 opacity-0 translate-y-10 pointer-events-none'

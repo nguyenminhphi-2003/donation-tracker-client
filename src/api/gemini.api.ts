@@ -46,7 +46,6 @@ interface GeminiResponse {
   modelVersion: string;
 }
 
-const API_KEY = 'AIzaSyBdVkLPrE1-_kB57EVUWeV-5fIS11u4miY';
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 export const geminiApi = {
@@ -70,7 +69,7 @@ export const geminiApi = {
       };
 
       const response = await axios.post<GeminiResponse>(
-        `${API_URL}?key=${API_KEY}`,
+        `${API_URL}?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
         requestData,
         {
           headers: {
@@ -113,7 +112,7 @@ export const geminiApi = {
       };
 
       const response = await axios.post<GeminiResponse>(
-        `${API_URL}?key=${API_KEY}`,
+        `${API_URL}?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
         requestData,
         {
           headers: {
