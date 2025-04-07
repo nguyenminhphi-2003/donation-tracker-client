@@ -28,6 +28,9 @@ export default function Activity() {
     const [donationAmount, setDonationAmount] = useState<string>('');
     const [donationLoading, setDonationLoading] = useState<boolean>(false);
     const [donationError, setDonationError] = useState<string | null>(null);
+    
+    // Default image for activities without an image
+    const defaultImageUrl = 'https://home.cdn.papaya.services/tu_thien_la_gi_5131bbcfa1.jpg';
 
     useEffect(() => {
         const cookie = document.cookie;
@@ -149,9 +152,13 @@ export default function Activity() {
                 {/* Banner Image */}
                 <div className='h-60 relative overflow-hidden'>
                     <img
-                        src='https://home.cdn.papaya.services/tu_thien_la_gi_5131bbcfa1.jpg'
+                        src={activity.image || defaultImageUrl}
                         className='w-full h-full object-cover'
                         alt={activity.name}
+                        onError={(e) => {
+                            // Fallback if image fails to load
+                            e.currentTarget.src = defaultImageUrl;
+                        }}
                     />
                     <div className='absolute inset-0 flex items-center justify-center'>
                         <h1 className='text-4xl font-bold text-white drop-shadow-lg'>
@@ -298,8 +305,8 @@ export default function Activity() {
             {/* Donation Modal Popup */}
             {showDonationModal && (
                 <div className='fixed inset-0 flex items-center justify-center z-50 p-4'>
-                    {' '}
-                    <div className='bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative'>
+                    <div className='absolute inset-0 bg-black bg-opacity-50'></div>
+                    <div className='bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative z-10'>
                         {/* Close button */}
                         <button
                             onClick={() => setShowDonationModal(false)}

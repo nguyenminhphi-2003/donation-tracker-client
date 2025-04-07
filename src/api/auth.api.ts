@@ -8,6 +8,13 @@ export const authApi = {
             { withCredentials: true },
         ),
 
+    signup: (email: string, password: string, firstName: string, lastName: string) => (
+        api.post(
+            '/users/signup',
+            { email, password, firstName, lastName },
+        )
+    ),
+
     logout: () => api.get('/users/logout'),
 
     checkAdmin: () =>

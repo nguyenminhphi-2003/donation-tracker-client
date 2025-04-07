@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '../App.tsx';
 import Homepage from '../pages/Homepage';
 import Login from '../pages/Login';
+import Signup from '../pages/Signup';
 import Activities from '../pages/Activities';
 import Activity from '../pages/Activities/Activity';
 import MyActivities from '../pages/Activities/MyActivities';
@@ -25,6 +26,10 @@ export default createBrowserRouter([
             {
                 path: '/login',
                 element: createElement(Login),
+            },
+            {
+                path: '/signup',
+                element: createElement(Signup),
             },
             {
                 path: '/activities',

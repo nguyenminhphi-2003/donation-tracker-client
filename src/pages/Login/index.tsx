@@ -1,4 +1,4 @@
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { authApi } from '../../api/auth.api';
 import { AxiosError } from 'axios';
@@ -105,6 +105,15 @@ export default function Login() {
                         </svg>
                     )}
                 </button>
+                <div className='mt-6 text-gray-600'>
+                    Don't have an account?{' '}
+                    <Link
+                        to='/signup'
+                        className='text-primary-pink hover:underline'
+                    >
+                        Sign up
+                    </Link>
+                </div>
             </Form>
         </div>
     );

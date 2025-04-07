@@ -10,6 +10,7 @@ export interface Activity {
     _id: string;
     creator: Creator;
     name: string;
+    image: string;
     description: string;
     goalAmount: number;
     totalDonations: number;

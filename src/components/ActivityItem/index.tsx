@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom';
 
 export default function ActivityItem({ activity }: any) {
-    const { _id, name, creator, goalAmount, totalDonations } = activity;
+    const { _id, name, creator, image, goalAmount, totalDonations } = activity;
     const fullName =
         creator == null
             ? 'Community'
             : `${creator.firstName} ${creator.lastName}`;
+            
+    const defaultImageUrl = 'https://home.cdn.papaya.services/tu_thien_la_gi_5131bbcfa1.jpg';
 
     return (
         <div className='border border-gray-300 rounded-lg shadow-sm max-w-80'>
             <img
-                src='https://home.cdn.papaya.services/tu_thien_la_gi_5131bbcfa1.jpg'
+                src={image || defaultImageUrl}
                 className='w-80 rounded-t-lg'
+                alt={name}
+                onError={(e) => {
+                    e.currentTarget.src = defaultImageUrl;
+                }}
             />
 
             <div className='px-2'>
